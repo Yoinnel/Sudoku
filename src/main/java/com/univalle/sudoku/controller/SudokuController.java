@@ -1,4 +1,5 @@
 package com.univalle.sudoku.controller;
+
 import com.univalle.sudoku.model.Sudoku;
 import com.univalle.sudoku.model.Validador;
 import java.util.Random;
@@ -12,8 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.Node;
-
-
 
 public class SudokuController {
 
@@ -59,43 +58,26 @@ public class SudokuController {
     @FXML private TextField tf54;
     @FXML private TextField tf55;
 
-
     private TextField[][] celdas = new TextField[6][6];
     private Sudoku sudoku;
     private Validador validador;
     private Random random = new Random();
 
     private void cargarTablero( ) {
-
         int[][] tablero = sudoku.getTableroJugador();
-
         for (int fila = 0; fila < 6; fila++) {
-
             for (int columna = 0; columna < 6; columna++) {
-
                 celdas[fila][columna].setStyle("");
-
                 if (tablero[fila][columna] != 0) {
-
-                    celdas[fila][columna].setText(
-                            String.valueOf(tablero[fila][columna]));
-
+                    celdas[fila][columna].setText(String.valueOf(tablero[fila][columna]));
                     celdas[fila][columna].setEditable(false);
-
                 } else {
-
                     celdas[fila][columna].setText("");
                     celdas[fila][columna].setEditable(true);
-
                 }
-
             }
-
         }
-
-
     }
-
 
     @FXML
     public void initialize() {
@@ -143,60 +125,36 @@ public class SudokuController {
         celdas[5][5] = tf55;
 
         UnaryOperator<TextFormatter.Change> filtro = change -> {
-
             String texto = change.getControlNewText();
-
             if (texto.matches("[1-6]?")) {
                 return change;
             }
-
             return null;
-
         };
 
         for (int fila = 0; fila < 6; fila++) {
-
             for (int columna = 0; columna < 6; columna++) {
-
                 celdas[fila][columna].setTextFormatter(
                         new TextFormatter<>(filtro));
-
             }
-
         }
-
         sudoku = new Sudoku();
         validador = new Validador();
         sudoku.nuevoJuego();
-
         cargarTablero();
-
-
-
-
     }
 
     @FXML
     private void validarCelda(KeyEvent event) {
-
-
         TextField celda = (TextField) event.getSource();
-
         String id = celda.getId();
-
         int fila = Character.getNumericValue(id.charAt(2));
         int columna = Character.getNumericValue(id.charAt(3));
-
         String texto = celda.getText();
-
         if (texto.isEmpty()) {
-
             celda.setStyle("");
-
             sudoku.actualizarCelda(fila, columna, 0);
-
             return;
-
         }
 
         // Solo un carácter
@@ -212,28 +170,15 @@ public class SudokuController {
         }
 
         int numero = Integer.parseInt(texto);
-
-
-
         sudoku.actualizarCelda(fila, columna, numero);
 
-
-
         for (int i = 0; i < 6; i++) {
-
-
             for (int j = 0; j < 6; j++) {
-
                 celdas[fila][columna].setStyle("");
-
                 System.out.print(sudoku.getTableroJugador()[i][j] + " ");
-
             }
-
             System.out.println();
-
         }
-
 
 
         boolean valido = validador.esMovimientoValido(
@@ -243,101 +188,63 @@ public class SudokuController {
                 numero);
 
         if (valido) {
-
             celda.setStyle("");
-
             if (sudoku.tableroCompleto()) {
-
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-
                 Stage stage = (Stage) tf00.getScene().getWindow();
                 alerta.initOwner(stage);
-
                 alerta.setTitle("¡Felicitaciones!");
-
                 alerta.setHeaderText("Has completado el Sudoku.");
-
                 alerta.setContentText("Excelente trabajo.");
-
                 alerta.showAndWait();
-
             }
-
         } else {
-
             celda.setStyle("-fx-border-color: red; -fx-border-width: 2;");
-
             sudoku.actualizarCelda(fila, columna, 0);
-
         }
 
     }
 
     @FXML
     private void nuevoJuego() {
-
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         Stage stage = (Stage) tf00.getScene().getWindow();
         alerta.initOwner(stage);
-
         alerta.setTitle("Nuevo Juego");
-
         alerta.setHeaderText("¿Deseas iniciar una nueva partida?");
-
         alerta.setContentText("Se perderá el progreso actual.");
-
         if (alerta.showAndWait().get() == ButtonType.OK) {
-
             sudoku.nuevoJuego();
-
             cargarTablero();
-
         }
-
     }
 
     @FXML
     private void ayuda() {
-
         if (sudoku.contarCasillasVacias() <= 1) {
-
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-
             Stage stage = (Stage) tf00.getScene().getWindow();
             alerta.initOwner(stage);
-
             alerta.setTitle("Ayuda");
-
             alerta.setHeaderText("No es posible usar la ayuda");
-
             alerta.setContentText("Debes completar la última casilla por tu cuenta.");
-
             alerta.showAndWait();
-
             return;
-
         }
 
         int fila;
         int columna;
 
         do {
-
             fila = random.nextInt(6);
             columna = random.nextInt(6);
-
         } while (sudoku.getTableroJugador()[fila][columna] != 0);
 
         sudoku.colocarAyuda(fila, columna);
-
         int numero = sudoku.getValorSolucion(fila, columna);
-
         celdas[fila][columna].setText(String.valueOf(numero));
-
         celdas[fila][columna].setEditable(false);
-
         celdas[fila][columna].setStyle(
                 "-fx-background-color: lightgreen;");
-
     }
 }

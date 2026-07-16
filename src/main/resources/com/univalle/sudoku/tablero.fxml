@@ -1,76 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.univalle.sudoku.controller.SudokuController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.univalle.sudoku.controller.SudokuController">
    <children>
-      <GridPane layoutX="187.0" layoutY="110.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="60.0" prefWidth="60.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="60.0" prefWidth="60.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="60.0" prefWidth="60.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="60.0" prefWidth="60.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="60.0" prefWidth="60.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="60.0" prefWidth="60.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="34.105560302734375" minHeight="10.0" prefHeight="30.761764526367188" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="29.238235473632812" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="tf33" onKeyReleased="#validarCelda" prefHeight="51.0" prefWidth="60.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <TextField fx:id="tf03" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="44.0" prefWidth="60.0" GridPane.columnIndex="3" />
-            <TextField fx:id="tf02" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="48.0" prefWidth="60.0" GridPane.columnIndex="2" />
-            <TextField fx:id="tf01" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="67.0" prefWidth="60.0" GridPane.columnIndex="1" />
-            <TextField fx:id="tf04" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="45.0" prefWidth="60.0" GridPane.columnIndex="4" />
-            <TextField fx:id="tf05" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="61.0" prefWidth="60.0" GridPane.columnIndex="5" />
-            <TextField fx:id="tf10" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="48.0" prefWidth="60.0" GridPane.rowIndex="1" />
-            <TextField fx:id="tf11" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="40.0" prefWidth="60.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tf12" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="51.0" prefWidth="60.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="tf13" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="46.0" prefWidth="60.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField fx:id="tf14" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="38.0" prefWidth="60.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <TextField fx:id="tf15" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="55.0" prefWidth="60.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <TextField fx:id="tf20" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="38.0" prefWidth="60.0" GridPane.rowIndex="2" />
-            <TextField fx:id="tf21" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="45.0" prefWidth="60.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="tf22" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="60.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField fx:id="tf23" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="43.0" prefWidth="60.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField fx:id="tf24" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="57.0" prefWidth="60.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <TextField fx:id="tf25" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="33.0" prefWidth="60.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <TextField fx:id="tf30" onKeyReleased="#validarCelda" prefHeight="48.0" prefWidth="60.0" GridPane.rowIndex="3" />
-            <TextField fx:id="tf31" onKeyReleased="#validarCelda" prefHeight="51.0" prefWidth="60.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="tf32" onKeyReleased="#validarCelda" prefHeight="47.0" prefWidth="60.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField fx:id="tf00" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="42.0" prefWidth="60.0" />
-            <TextField fx:id="tf35" onKeyReleased="#validarCelda" prefHeight="48.0" prefWidth="60.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <TextField fx:id="tf34" onKeyReleased="#validarCelda" prefHeight="40.0" prefWidth="60.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <TextField fx:id="tf40" onKeyReleased="#validarCelda" prefHeight="42.0" prefWidth="60.0" GridPane.rowIndex="4" />
-            <TextField fx:id="tf41" onKeyReleased="#validarCelda" prefHeight="38.0" prefWidth="60.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="tf42" onKeyReleased="#validarCelda" prefHeight="40.0" prefWidth="60.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <TextField fx:id="tf43" onKeyReleased="#validarCelda" prefHeight="43.0" prefWidth="60.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <TextField fx:id="tf44" onKeyReleased="#validarCelda" prefHeight="45.0" prefWidth="60.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <TextField fx:id="tf45" onKeyReleased="#validarCelda" prefHeight="67.0" prefWidth="60.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-            <TextField fx:id="tf50" onKeyReleased="#validarCelda" prefHeight="43.0" prefWidth="60.0" GridPane.rowIndex="5" />
-            <TextField fx:id="tf51" onKeyReleased="#validarCelda" prefHeight="30.0" prefWidth="60.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="tf52" onKeyReleased="#validarCelda" prefHeight="37.0" prefWidth="60.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <TextField fx:id="tf53" onKeyReleased="#validarCelda" prefHeight="33.0" prefWidth="60.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <TextField fx:id="tf54" onKeyReleased="#validarCelda" prefHeight="35.0" prefWidth="60.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <TextField fx:id="tf55" onKeyReleased="#validarCelda" prefHeight="36.0" prefWidth="60.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Label text="SUDOKU" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="42.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="50.0" left="100.0" right="100.0" top="20.0" />
+               </VBox.margin></Label>
+            <GridPane alignment="CENTER" prefHeight="297.0" prefWidth="360.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" percentWidth="0.0" prefWidth="50.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" percentWidth="0.0" prefWidth="50.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" percentWidth="0.0" prefWidth="50.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" percentWidth="0.0" prefWidth="50.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" percentWidth="0.0" prefWidth="50.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" percentWidth="0.0" prefWidth="50.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="tf33" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf03" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="3">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf02" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf01" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf04" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="4">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf05" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="5">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf10" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf11" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf12" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf13" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf14" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf15" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf20" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf21" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf22" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf23" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf24" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf25" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf30" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf31" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf32" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf00" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf35" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf34" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf40" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf41" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf42" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf43" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf44" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf45" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf50" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf51" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf52" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf53" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf54" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+                  <TextField fx:id="tf55" alignment="CENTER" onKeyReleased="#validarCelda" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font></TextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="50.0" left="150.0" right="150.0" />
+               </VBox.margin>
+            </GridPane>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="800.0" spacing="30.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#nuevoJuego" text="NUEVO JUEGO" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+                  <Button mnemonicParsing="false" onAction="#ayuda" text="NECESITO AYUDA" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+               </children>
+            </HBox>
          </children>
-      </GridPane>
-      <Button layoutX="276.0" layoutY="302.0" mnemonicParsing="false" onAction="#nuevoJuego" text="Nuevo Juego" />
-      <Button layoutX="400.0" layoutY="302.0" mnemonicParsing="false" onAction="#ayuda" text="Ayuda" />
-      <Line endX="366.0" endY="-2.645111083984375" layoutX="181.0" layoutY="173.0" startX="6.0" startY="-2.645111083984375" strokeWidth="2.0" />
-      <Line endX="356.0" endY="48.07090759277344" layoutX="191.0" layoutY="183.0" startX="-2.61676025390625" startY="48.07090759277344" strokeWidth="2.0" />
-      <TextField alignment="CENTER" editable="false" layoutX="288.0" layoutY="55.0" text="Sudoku Game" />
-      <Line endX="191.06472778320312" endY="444.1949157714844" layoutX="176.0" layoutY="-153.0" startX="191.0" startY="263.0" strokeWidth="2.0" />
+      </VBox>
+      <Line endX="1236.0" endY="-202.0" layoutX="-687.0" layoutY="534.0" startX="938.0" startY="-202.0" strokeLineCap="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" strokeWidth="2.0" AnchorPane.bottomAnchor="266.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="249.0" AnchorPane.topAnchor="330.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Line>
+      <Line endX="1236.0" endY="-202.0" layoutX="-687.0" layoutY="433.0" startX="938.0" startY="-202.0" strokeLineCap="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" strokeWidth="2.0" AnchorPane.bottomAnchor="168.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="397.0" AnchorPane.topAnchor="231.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Line>
+      <Line endX="940.0" endY="95.0" layoutX="-539.0" layoutY="335.0" startX="938.0" startY="-202.0" strokeLineCap="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" strokeWidth="2.0" AnchorPane.bottomAnchor="168.0" AnchorPane.leftAnchor="448.0" AnchorPane.rightAnchor="397.0" AnchorPane.topAnchor="131.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Line>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" focusTraversable="true" height="301.0" layoutX="249.0" layoutY="131.0" mouseTransparent="true" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="302.0" AnchorPane.bottomAnchor="168.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="249.0" AnchorPane.topAnchor="131.0" />
    </children>
 </AnchorPane>
