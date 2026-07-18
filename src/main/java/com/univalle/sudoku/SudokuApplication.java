@@ -1,3 +1,17 @@
+/**
+ * Game "SUDOKU"
+ * Desarrollado usando JavaFX, IntelliJ Idea y SceneBuilder
+ * Languages used: Java
+ * <p>
+ * Description of the game:
+ *<p>
+ * @author Estaban Granada Salamanca
+ * @author Yoinnel Gabriel Martinez Brito
+ *<p>
+ * @version 1.0
+ * @since 2026
+ */
+
 package com.univalle.sudoku;
 
 import javafx.application.Application;
@@ -9,6 +23,11 @@ import java.io.IOException;
 
 public class SudokuApplication extends Application {
 
+    /**
+     *
+     * @param stage El escenario principal de la aplicación sobre el cual se colocan las escenas .fxml
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SudokuApplication.class.getResource("tablero.fxml"));

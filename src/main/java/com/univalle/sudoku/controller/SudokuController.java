@@ -1,3 +1,13 @@
+/**
+ * Esta clase contiene los controles de la escena tablero.fxml
+ *
+ * @author Estaban Granada Salamanca
+ * @author Yoinnel Gabriel Martinez Brito
+ *
+ * @version 1.0
+ * @since 2026
+ */
+
 package com.univalle.sudoku.controller;
 
 import com.univalle.sudoku.model.Sudoku;
@@ -16,6 +26,7 @@ import javafx.scene.Node;
 
 public class SudokuController {
 
+    // Variables @FXML
     @FXML private TextField tf00;
     @FXML private TextField tf01;
     @FXML private TextField tf02;
@@ -58,30 +69,21 @@ public class SudokuController {
     @FXML private TextField tf54;
     @FXML private TextField tf55;
 
+    // Variables
     private TextField[][] celdas = new TextField[6][6];
     private Sudoku sudoku;
     private Validador validador;
     private Random random = new Random();
 
-    private void cargarTablero( ) {
-        int[][] tablero = sudoku.getTableroJugador();
-        for (int fila = 0; fila < 6; fila++) {
-            for (int columna = 0; columna < 6; columna++) {
-                celdas[fila][columna].setStyle("");
-                if (tablero[fila][columna] != 0) {
-                    celdas[fila][columna].setText(String.valueOf(tablero[fila][columna]));
-                    celdas[fila][columna].setEditable(false);
-                } else {
-                    celdas[fila][columna].setText("");
-                    celdas[fila][columna].setEditable(true);
-                }
-            }
-        }
-    }
-
+    /**
+     * Este metodo es el primero en inicializarce en la clase SudokuController
+     * Este metodo organiza las 36 casillas de la pantalla en una matriz de 6x6 y les aplica un filtro para que solo acepten números del 1 al 6.
+     *
+     */
     @FXML
     public void initialize() {
 
+        // Se organizan las 36 casillas en una matriz 6x6
         celdas[0][0] = tf00;
         celdas[0][1] = tf01;
         celdas[0][2] = tf02;
@@ -124,6 +126,7 @@ public class SudokuController {
         celdas[5][4] = tf54;
         celdas[5][5] = tf55;
 
+        // Se crea la regla del filtro para que solo se acepten de entrada números del 1 al 6
         UnaryOperator<TextFormatter.Change> filtro = change -> {
             String texto = change.getControlNewText();
             if (texto.matches("[1-6]?")) {
@@ -132,20 +135,48 @@ public class SudokuController {
             return null;
         };
 
+        // Se aplica el filtro a las celdas
         for (int fila = 0; fila < 6; fila++) {
             for (int columna = 0; columna < 6; columna++) {
                 celdas[fila][columna].setTextFormatter(
                         new TextFormatter<>(filtro));
             }
         }
+
+        // Se crea una nueva partida y se carga el nuevo tablero
         sudoku = new Sudoku();
         validador = new Validador();
         sudoku.nuevoJuego();
         cargarTablero();
     }
 
+    /**
+     *Este metodo se encarga de cargar el tablero que verá el jugador y colocar los números iniciales, además de hacer que el jugador no pueda modificarlos, mientras que permite al jugador modificar las celdas vacías
+     */
+    private void cargarTablero( ) {
+        int[][] tablero = sudoku.getTableroJugador();
+        for (int fila = 0; fila < 6; fila++) {
+            for (int columna = 0; columna < 6; columna++) {
+                celdas[fila][columna].setStyle("");
+                if (tablero[fila][columna] != 0) {
+                    celdas[fila][columna].setText(String.valueOf(tablero[fila][columna]));
+                    celdas[fila][columna].setEditable(false);
+                } else {
+                    celdas[fila][columna].setText("");
+                    celdas[fila][columna].setEditable(true);
+                }
+            }
+        }
+    }
+
+    /**
+     * Este metodo válida que el caracter ingresado por el jugador sea un número
+     * @param event
+     */
     @FXML
     private void validarCelda(KeyEvent event) {
+
+        // Si el jugador ingresa un caracter que no sea un número, la celda queda vacía
         TextField celda = (TextField) event.getSource();
         String id = celda.getId();
         int fila = Character.getNumericValue(id.charAt(2));
@@ -157,18 +188,14 @@ public class SudokuController {
             return;
         }
 
-        // Solo un carácter
+        // El jugador solo puede ingresar un caracter
         if (texto.length() > 1) {
             celda.clear();
             return;
         }
 
-        // Debe ser un número
-        if (!texto.matches("[1-6]")) {
-            celda.clear();
-            return;
-        }
 
+        // Se actualiza la celda modificada
         int numero = Integer.parseInt(texto);
         sudoku.actualizarCelda(fila, columna, numero);
 
@@ -180,14 +207,11 @@ public class SudokuController {
             System.out.println();
         }
 
-
-        boolean valido = validador.esMovimientoValido(
-                sudoku.getTableroJugador(),
-                fila,
-                columna,
-                numero);
+        // Se verifica que fila y columna han sido modificados y si el movimiento cumple las reglas del sudoku
+        boolean valido = validador.esMovimientoValido(sudoku.getTableroJugador(), fila, columna, numero);
 
         if (valido) {
+            // Si el valor ingresado es válido, la celda conserva su estilo
             celda.setStyle("");
             if (sudoku.tableroCompleto()) {
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
@@ -198,6 +222,7 @@ public class SudokuController {
                 alerta.setContentText("Excelente trabajo.");
                 alerta.showAndWait();
             }
+            // Si no es válida, la celda se marca con un contorno rojo
         } else {
             celda.setStyle("-fx-border-color: red; -fx-border-width: 2;");
             sudoku.actualizarCelda(fila, columna, 0);
@@ -205,6 +230,9 @@ public class SudokuController {
 
     }
 
+    /**
+     * Este metodo genera un mensaje cuando el jugador presiona el botón de "Nuevo Juego" para confirmar si quiere iniciar una nueva ronda
+     */
     @FXML
     private void nuevoJuego() {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -219,8 +247,15 @@ public class SudokuController {
         }
     }
 
+    /**
+     * Este metodo rellena una casilla aleatoria con un número correcto del tablero, siempre y cuando no quede una última casilla
+     */
     @FXML
     private void ayuda() {
+        /**
+         * Si queda una sola casilla por terminar se le informa al jugador que debe completarla él mismo
+         * No es posible terminar el sudoku con las ayudas del juego
+         */
         if (sudoku.contarCasillasVacias() <= 1) {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             Stage stage = (Stage) tf00.getScene().getWindow();
@@ -235,11 +270,14 @@ public class SudokuController {
         int fila;
         int columna;
 
+        // Si quedan más de una casilla sin rellenar, se rellena una casilla aleatoria
         do {
+            // Se "elije" la casilla a rellenar
             fila = random.nextInt(6);
             columna = random.nextInt(6);
         } while (sudoku.getTableroJugador()[fila][columna] != 0);
 
+        // Se muestra la ayuda en la casilla y se hace que el jugador no pueda modificar la casilla rellenada por el botón de ayuda. Además, se rellena el fondo de la casilla con un color verde claro
         sudoku.colocarAyuda(fila, columna);
         int numero = sudoku.getValorSolucion(fila, columna);
         celdas[fila][columna].setText(String.valueOf(numero));
